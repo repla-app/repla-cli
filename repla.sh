@@ -14,8 +14,13 @@ if [[ "$bundle_name" = "Server" ]]; then
   exit 1
 fi
 
-dir=$PWD
+if [[ -n "$2" ]]; then
+  dir="$2"
+else
+  dir=$PWD
+fi
+
 env=$(env)
 env_arg=$(printf %q $env)
 
-osascript "${BASH_SOURCE%/*}/run_plugin.scpt" $@ $env_arg
+osascript "${BASH_SOURCE%/*}/run_plugin.scpt" $dir $@ $env_arg

@@ -9,18 +9,15 @@ if [[ -z "$bundle_name" ]]; then
   exit 1
 fi
 
-if [[ "$bundle_name" = "Server" ]]; then
+if [[ "$bundle_name" != "server" ]]; then
   echo "The only the Server bundle is currently supported." >&2
   exit 1
 fi
 
-if [[ -n "$2" ]]; then
-  dir="$2"
-else
-  dir=$PWD
-fi
+shift
 
+dir=$PWD
 env=$(env)
 env_arg=$(printf %q $env)
 
-osascript "${BASH_SOURCE%/*}/run_plugin.scpt" $dir $@ $env_arg
+osascript "${BASH_SOURCE%/*}/run_plugin.scpt" Server $dir "$@" $env_arg

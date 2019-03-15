@@ -16,4 +16,4 @@ command += ' ' + arguments.compact.map(&:to_s).map do |x|
   Shellwords.escape(x)
 end.join(' ')
 
-puts "command = #{command}"
+`#{command}`

@@ -18,6 +18,13 @@ shift
 
 dir=$PWD
 env=$(env)
-env_arg=$(printf %q $env)
+# printf '[%q]\n' 
+printf -v env_arg %q "$env"
+# env_arg=$(printf %q $env)
 
-osascript "${BASH_SOURCE%/*}/run_plugin.scpt" Server $dir "$@" $env_arg
+# echo "$env"
+# echo $env_arg
+
+# osascript "${BASH_SOURCE%/*}/run_plugin.scpt" Server $dir "$@" $env_arg
+
+# osascript "${BASH_SOURCE%/*}/run_plugin.scpt" Server $dir "$@" "$env"

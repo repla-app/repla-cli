@@ -2,7 +2,20 @@
 
 require 'shellwords'
 
-# TODO: Add error handling
+if ARGV[0].nil?
+  STDERR.puts "Error no bundle name specified."
+  exit 1
+end
+
+if ARGV[0] != "server"
+  STDERR.puts "The only the Server bundle is currently supported."
+  exit 1
+end
+
+if ARGV[1].nil?
+  STDERR.puts "No command specified."
+  exit 1
+end
 
 env=`env`
 dir = Dir.pwd

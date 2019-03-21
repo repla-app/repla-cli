@@ -3,21 +3,21 @@
 require 'shellwords'
 
 if ARGV[0].nil?
-  STDERR.puts "Error no bundle name specified."
+  STDERR.puts 'Error no bundle name specified.'
   exit 1
 end
 
-if ARGV[0] != "server"
-  STDERR.puts "The only the Server bundle is currently supported."
+if ARGV[0] != 'server'
+  STDERR.puts 'The only the Server bundle is currently supported.'
   exit 1
 end
 
 if ARGV[1].nil?
-  STDERR.puts "No command specified."
+  STDERR.puts 'No command specified.'
   exit 1
 end
 
-env=`env`
+env = `env`
 dir = Dir.pwd
 
 script_arg = File.join(__dir__, 'run_plugin.scpt')

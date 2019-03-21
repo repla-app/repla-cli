@@ -4,12 +4,9 @@ require 'minitest/autorun'
 
 # Test CLI
 class TestCLI < Minitest::Test
-  def setup
-  end
+  def setup; end
 
-  def teardown
-  end
+  def teardown; end
 
-  def test_cli
-  end
+  def test_cli; end
 end

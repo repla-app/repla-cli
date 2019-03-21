@@ -20,7 +20,7 @@ end
 env=`env`
 dir = Dir.pwd
 
-script_arg = File.join(File.dirname(__FILE__), 'run_plugin.scpt')
+script_arg = File.join(__dir__, 'run_plugin.scpt')
 command = "osascript #{script_arg} Server #{Shellwords.escape(dir)}"
 
 arguments = ARGV[1..-1]

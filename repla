@@ -3,12 +3,12 @@
 require 'shellwords'
 
 if ARGV[0].nil?
-  STDERR.puts 'Error no bundle name specified.'
+  STDERR.puts 'Error no plugin name specified.'
   exit 1
 end
 
 if ARGV[0] != 'server'
-  STDERR.puts 'The only the Server bundle is currently supported.'
+  STDERR.puts 'The only the Server plugin is currently supported.'
   exit 1
 end
 

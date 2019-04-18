@@ -17,14 +17,12 @@ if ARGV[1].nil?
   exit 1
 end
 
-env = `env`
 dir = Dir.pwd
 
 script_arg = File.join(__dir__, 'run_plugin.scpt')
 command = "osascript #{script_arg} Server #{Shellwords.escape(dir)}"
 
 arguments = ARGV[1..-1]
-arguments.push(env)
 command += ' ' + arguments.compact.map(&:to_s).map do |x|
   Shellwords.escape(x)
 end.join(' ')

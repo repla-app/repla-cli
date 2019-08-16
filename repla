@@ -7,20 +7,12 @@ if ARGV[0].nil?
   exit 1
 end
 
-if ARGV[0] != 'server'
-  STDERR.puts 'The only the Server plugin is currently supported.'
-  exit 1
-end
-
-if ARGV[1].nil?
-  STDERR.puts 'No command specified.'
-  exit 1
-end
+plugin_name = ARGV[0]
 
 dir = Dir.pwd
 
 script_arg = File.join(__dir__, 'run_plugin.scpt')
-command = "/usr/bin/osascript #{script_arg} Server #{Shellwords.escape(dir)}"
+command = "/usr/bin/osascript #{script_arg} #{Shellwords.escape(plugin_name)} #{Shellwords.escape(dir)}"
 
 arguments = ARGV[1..-1]
 command += ' ' + arguments.compact.map(&:to_s).map do |x|

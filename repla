@@ -2,21 +2,33 @@
 
 require 'shellwords'
 
+usage = 'Usage: repla [plugin name (or) file] [plugin parameters]'
+
 if ARGV[0].nil?
-  STDERR.puts 'Error no plugin name specified.'
+  STDERR.puts usage
   exit 1
 end
 
-plugin_name = ARGV[0]
+first_arg = ARGV[0]
+
+if File.exist?(first_arg)
+  if ARGV.length > 1
+    STDERR.puts usage
+    exit 1
+  end
+  script_arg = File.join(__dir__, 'open.scpt')
+  command = "/usr/bin/osascript #{script_arg} #{Shellwords.escape(first_arg)} >/dev/null"
+  exec(command)
+end
 
 dir = Dir.pwd
 
 script_arg = File.join(__dir__, 'run_plugin.scpt')
-command = "/usr/bin/osascript #{script_arg} #{Shellwords.escape(plugin_name)} #{Shellwords.escape(dir)}"
+command = "/usr/bin/osascript #{script_arg} #{Shellwords.escape(first_arg)} #{Shellwords.escape(dir)}"
 
 arguments = ARGV[1..-1]
 command += ' ' + arguments.compact.map(&:to_s).map do |x|
   Shellwords.escape(x)
 end.join(' ')
 
-`#{command}`
+exec(command)

@@ -4,4 +4,4 @@ set -e
 script_dir=$(/usr/bin/dirname "$(/usr/bin/stat -f %Y "${BASH_SOURCE[0]}")")
 repla_path="${script_dir}/repla.rb"
 ruby_path="${script_dir}/../bin/ruby"
-exec "$ruby_path" "$repla_path" "$@"
+exec "$ruby_path"  --disable-gems "$repla_path" "$@"

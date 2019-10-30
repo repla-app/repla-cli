@@ -14,10 +14,10 @@ autocorrect:
 	rubocop -a
 
 install_override:
-	rm $(SYMLINK_PATH)
-	ln -s ${PWD}/$(LOCAL_PATH) $(SYMLINK_PATH)
+	rm -f "$(SYMLINK_PATH)"
+	ln -s "${PWD}/$(LOCAL_PATH)" "$(SYMLINK_PATH)"
 
 uninstall_override:
-	rm $(SYMLINK_PATH)
-	ln -s $(ORIGINAL_PATH) $(SYMLINK_PATH)
+	rm -f "$(SYMLINK_PATH)"
+	ln -s "$(ORIGINAL_PATH)" "$(SYMLINK_PATH)"
 

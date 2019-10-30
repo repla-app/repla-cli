@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-
-script_dir=$(dirname "$0")
+script_dir=$(dirname "$(stat -f %Y "${BASH_SOURCE[0]}")")
 repla_path="${script_dir}/repla.rb"
 ruby_path="${script_dir}/../bin/ruby"
 exec "$ruby_path" "$repla_path" "$@"

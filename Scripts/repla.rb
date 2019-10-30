@@ -5,7 +5,7 @@ require 'shellwords'
 usage = 'Usage: repla [plugin name (or) file] [plugin parameters]'
 
 if ARGV[0].nil?
-  STDERR.puts usage
+  warn usage
   exit 1
 end
 
@@ -13,7 +13,7 @@ first_arg = ARGV[0]
 
 if File.exist?(first_arg)
   if ARGV.length > 1
-    STDERR.puts usage
+    warn usage
     exit 1
   end
   script_arg = File.join(__dir__, 'open.scpt')

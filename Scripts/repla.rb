@@ -19,7 +19,7 @@ if File.exist?(first_arg)
   script_arg = File.join(__dir__, 'open.scpt')
   path = File.expand_path(first_arg)
   command = "/usr/bin/osascript \"#{script_arg}\" "\
-    "\"#{Shellwords.escape(path)}\""
+    "\"#{path}\""
   exec(command)
 end
 

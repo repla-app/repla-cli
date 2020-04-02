@@ -19,7 +19,7 @@ if File.exist?(first_arg)
   script_arg = File.join(__dir__, 'open.scpt')
   path = File.expand_path(first_arg)
   command = "/usr/bin/osascript \"#{script_arg}\" "\
-    "\"#{Shellwords.escape(path)}\""
+    "\"#{path}\""
   exec(command)
 end
 
@@ -27,7 +27,7 @@ dir = Dir.pwd
 
 script_arg = File.join(__dir__, 'run_plugin.scpt')
 command = "/usr/bin/osascript \"#{script_arg}\" "\
-  "\"#{Shellwords.escape(first_arg)}\" \"#{Shellwords.escape(dir)}\""
+  "\"#{Shellwords.escape(first_arg)}\" \"#{dir}\""
 
 arguments = ARGV[1..-1]
 command += ' ' + arguments.compact.map(&:to_s).map do |x|

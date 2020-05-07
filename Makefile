@@ -15,7 +15,7 @@ sign:
 	# native extensions cannot be loaded without the entitlements.
 	# To update the binary, run this and then commit directly to the repo.
 	codesign --force --options runtime --sign "Developer ID Application" \
-		--entitlements Repla.entitlements bin/ruby
+		--entitlements ruby.entitlements bin/ruby
 
 autocorrect:
 	rubocop -a

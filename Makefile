@@ -13,7 +13,7 @@ lint:
 runtime:
 	# `ruby` fails notarization without the hardened runtime enabled
 	codesign --force --options runtime --sign "Developer ID Application" \
-		bin/ruby
+		--entitlements Repla/Repla.entitlements bin/ruby
 
 autocorrect:
 	rubocop -a

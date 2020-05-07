@@ -13,7 +13,9 @@ lint:
 sign:
 	# `ruby` fails notarization without the hardened runtime enabled, and
 	# native extensions cannot be loaded without the entitlements.
-	# To update the binary, run this and then commit directly to the repo.
+	# Theoretically this can be run to update the binary in place, but it's
+	# easier just to copy and paste this command and run it on a separate
+	# checkout of the `ruby` binary.
 	codesign --force --options runtime --sign "Developer ID Application" \
 		--entitlements ruby.entitlements bin/ruby
 

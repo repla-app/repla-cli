@@ -2,13 +2,16 @@ SYMLINK_PATH = /usr/local/bin/repla
 ORIGINAL_PATH = /Applications/Repla.app/Contents/Resources/Scripts/repla
 LOCAL_PATH = Scripts/repla
 
-.PHONY: ci ac autocorrect lint install_override uninstall_override runtime sign
+.PHONY: ci ac autocorrect lint install_override uninstall_override runtime sign loc
 
 ci: lint
 ac: autocorrect
 
 lint:
 	rubocop
+
+loc:
+	cloc --vcs=git
 
 sign:
 	# `ruby` fails notarization without the hardened runtime enabled, and

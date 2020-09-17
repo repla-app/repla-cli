@@ -34,7 +34,7 @@ uninstall_override:
 	ln -s "$(ORIGINAL_PATH)" "$(SYMLINK_PATH)"
 
 irc_started:
-	@echo remote=$$(git config --get remote.origin.url | tr -d '\n'); \
+	@remote=$$(git config --get remote.origin.url | tr -d '\n'); \
 	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
 	  remote_subpath="$${BASH_REMATCH[2]}"; \
 	  remote_subpath=$${remote_subpath%.git}; \
@@ -53,7 +53,7 @@ irc_started:
 	) | nc irc.freenode.net 6667
 
 irc_finished:
-	@echo remote=$$(git config --get remote.origin.url | tr -d '\n'); \
+	@remote=$$(git config --get remote.origin.url | tr -d '\n'); \
 	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
 	  remote_subpath="$${BASH_REMATCH[2]}"; \
 	  remote_subpath=$${remote_subpath%.git}; \

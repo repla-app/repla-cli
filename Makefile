@@ -44,11 +44,22 @@ irc_started:
 	) | nc irc.freenode.net 6667
 
 irc_finished:
+	remote=$$(git config --get remote.origin.url | tr -d '\n'); \
+	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
+	  remote_subpath="$${BASH_REMATCH[2]}"; \
+	  remote_subpath=$${remote_subpath%.git}; \
+	  remote_url="https://github.com/$${remote_subpath}/pulls"; \
+	else \
+	  echo ""; \
+	  exit 0; \
+	fi; \
+	echo "$$remote_url"; \
+	exit 1; \
 	( \
 	echo "NICK repla-bot"; \
 	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
 	sleep 20; \
 	echo "JOIN #repla-development"; \
-	echo "PRIVMSG #repla-development :CI Finished"; \
+	echo "PRIVMSG #repla-development :CI finished $${remote_url}"; \
 	echo "QUIT"; \
 	) | nc irc.freenode.net 6667

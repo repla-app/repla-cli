@@ -34,17 +34,7 @@ uninstall_override:
 	ln -s "$(ORIGINAL_PATH)" "$(SYMLINK_PATH)"
 
 irc_started:
-	( \
-	echo "NICK repla-bot"; \
-	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
-	sleep 20; \
-	echo "JOIN #repla-development"; \
-	echo "PRIVMSG #repla-development :CI Started"; \
-	echo "QUIT"; \
-	) | nc irc.freenode.net 6667
-
-irc_finished:
-	remote=$$(git config --get remote.origin.url | tr -d '\n'); \
+	@echo remote=$$(git config --get remote.origin.url | tr -d '\n'); \
 	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
 	  remote_subpath="$${BASH_REMATCH[2]}"; \
 	  remote_subpath=$${remote_subpath%.git}; \
@@ -53,8 +43,25 @@ irc_finished:
 	  echo ""; \
 	  exit 0; \
 	fi; \
-	echo "$$remote_url"; \
-	exit 1; \
+	( \
+	echo "NICK repla-bot"; \
+	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
+	sleep 20; \
+	echo "JOIN #repla-development"; \
+	echo "PRIVMSG #repla-development :CI started $${remote_url}"; \
+	echo "QUIT"; \
+	) | nc irc.freenode.net 6667
+
+irc_finished:
+	@echo remote=$$(git config --get remote.origin.url | tr -d '\n'); \
+	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
+	  remote_subpath="$${BASH_REMATCH[2]}"; \
+	  remote_subpath=$${remote_subpath%.git}; \
+	  remote_url="https://github.com/$${remote_subpath}/pulls"; \
+	else \
+	  echo ""; \
+	  exit 0; \
+	fi; \
 	( \
 	echo "NICK repla-bot"; \
 	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \

@@ -4,7 +4,7 @@ LOCAL_PATH = Scripts/repla
 
 .PHONY: ci ac autocorrect lint install_override uninstall_override runtime sign loc
 
-ci: lint
+ci: irc_started lint irc_finished
 ac: autocorrect
 
 lint:
@@ -32,6 +32,16 @@ install_override:
 uninstall_override:
 	rm -f "$(SYMLINK_PATH)"
 	ln -s "$(ORIGINAL_PATH)" "$(SYMLINK_PATH)"
+
+irc_started:
+	(
+	echo "NICK repla-bot"
+	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"
+	sleep 20
+	echo "JOIN #repla-development"
+	echo "PRIVMSG #repla-development :CI started"
+	echo "QUIT"
+	) | nc irc.freenode.net 6667
 
 irc_finished:
 	(

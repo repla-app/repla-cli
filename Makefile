@@ -34,7 +34,7 @@ uninstall_override:
 	rm -f "$(SYMLINK_PATH)"
 	ln -s "$(ORIGINAL_PATH)" "$(SYMLINK_PATH)"
 
-irc_message:
+define irc_message
 	remote=$$(git config --get remote.origin.url | tr -d '\n'); \
 	if [[ $${remote}  =~ (https://|git@)github.com[/:](.*) ]]; then \
 	  remote_subpath="$${BASH_REMATCH[2]}"; \
@@ -52,6 +52,7 @@ irc_message:
 	echo "PRIVMSG #repla-development :REPLABOT $1 $${remote_url}"; \
 	echo "QUIT"; \
 	) | nc irc.freenode.net 6667
+endef
 
 irc_started:
 	@$(call irc_message,CISTARTED)

@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 SYMLINK_PATH = /usr/local/bin/repla
 ORIGINAL_PATH = /Applications/Repla.app/Contents/Resources/Scripts/repla
 LOCAL_PATH = Scripts/repla

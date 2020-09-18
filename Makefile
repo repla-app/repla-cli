@@ -49,7 +49,7 @@ irc_started:
 	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
 	sleep 20; \
 	echo "JOIN #repla-development"; \
-	echo "PRIVMSG #repla-development :CI started $${remote_url}"; \
+	echo "PRIVMSG #repla-development :REPLABOT-CISTARTED $${remote_url}"; \
 	echo "QUIT"; \
 	) | nc irc.freenode.net 6667
 
@@ -68,6 +68,6 @@ irc_finished:
 	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
 	sleep 20; \
 	echo "JOIN #repla-development"; \
-	echo "PRIVMSG #repla-development :CI finished $${remote_url}"; \
+	echo "PRIVMSG #repla-development :REPLABOT-CIFINISHED $${remote_url}"; \
 	echo "QUIT"; \
 	) | nc irc.freenode.net 6667

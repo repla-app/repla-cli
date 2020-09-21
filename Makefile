@@ -47,7 +47,7 @@ define irc_message
 	( \
 	echo "NICK repla-bot"; \
 	echo "USER repla-bot 0.0.0.0 repla :Repla Bot"; \
-	sleep 10; \
+	sleep 15; \
 	echo "JOIN #repla-development"; \
 	echo "PRIVMSG #repla-development :REPLABOT $1 $${remote_url}"; \
 	echo "QUIT"; \

@@ -1,8 +1,0 @@
-language: ruby
-script: make ci
-rvm: 2.5.3
-branches:
-  only:
-    - master
-notifications:
-  irc: "chat.freenode.net#repla-development"

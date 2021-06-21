@@ -1,1 +1,1 @@
-# Repla CLI [![Build Status](https://travis-ci.org/repla-app/repla-cli.svg?branch=master)](https://travis-ci.org/repla-app/repla-cli)
+# Repla CLI ![Status](https://github.com/repla-app/repla-cli/actions/workflows/ci.yml/badge.svg)
